@@ -1,0 +1,31 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+<form method="post" action="{{ path('produit.validFormDeleteProduit') }}">
+    <fieldset>
+        <input name="id_produits"  type="hidden" value="{{donnees.id_produits}}" />
+    <div class="form-group">
+    <div class="col-md-7 mb-3">
+        <legend>Confirmer la suppression du produit suivant :</legend>
+    </div>
+        <div class="col-md-3 mb-3">
+
+            <label>Nom : <h5>{{donnees.libelle_produits}}</h5> </label>
+            {% if erreurs.nom is defined %}
+                <div class="invalid-feedback">
+
+                    {{erreurs.libelle_produits}}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+		<input type="hidden" id="_method" name="_method" value="delete" />
+        <div class="form-group">
+            <div class="col-md-6 mb-3">
+                <button class="btn" type="submit">supprimer</button>
+            </div>
+        </div>
+
+	</fieldset>	
+
+</form>
+{% endblock %}

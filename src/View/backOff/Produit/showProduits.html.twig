@@ -1,0 +1,30 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+	<div class="col-md-6 mb-2"></div>
+	<table class="table table-striped">
+		<thead class="thead-inverse">
+		<tr><th>nom</th><th>id produit</th><th>quantite</th><th>prix</th><th>type produit</th><th>heure debut</th><th>heure fin</th>
+            {% if   app.session.get('droits') is defined and  app.session.get('droits') == 'ROLE_ADMIN' %}
+				<th>opération</th>
+            {% endif %}
+		</tr>
+		</thead>
+		<tbody>
+        {% for produit in data if data is not empty %}
+
+			<tr>
+				<td>{{produit.libelle_produits}}</td><td>{{produit.id_produits}}</td><td>{{produit.quantite_produits}}</td><td>{{produit.prix_produits}}</td><td>
+                    {{produit.id_typeProduits}}</td><td>{{produit.heure_debut_vente}}</td><td>{{ produit.heure_fin_vente }}</td>
+                {% if   app.session.get('droits') is defined and  app.session.get('droits') == 'ROLE_ADMIN' %}
+					<td>
+						<a href="{{ path('produit.editProduit', {id: produit.id_produits}) }}">modifier</a>
+						<a href="{{ path('produit.deleteProduit', {id: produit.id_produits}) }}">supprimer</a>
+					</td>
+                {% endif %}
+			</tr>
+        {% endfor %}
+		</tbody>
+	</table>
+	</div>
+{% endblock %}
+

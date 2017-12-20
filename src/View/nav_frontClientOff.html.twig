@@ -1,0 +1,45 @@
+<nav class="navbar  navbar-expand-md navbar-dark fixed-top" style="background-color:#372F25;" >
+    <a class="navbar-brand" href="#">Easy Deal </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <span class="navbar-text">
+
+    </span>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Produit</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="{{ path('produitClient.show') }}">Afficher les produits</a>
+                    <a class="dropdown-item" href="{#{ path('produitClient.find') }#}">rechercher un produit</a>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('panier.show')}}" >Panier </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="" >Mes Reservations </a>
+            </li>
+
+        </ul>
+    </div>
+    <ul class="nav justify-content-end navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ path('client.profil') }}" >Mon profil </a>
+        </li>
+        {% if   app.session.get('logged') is defined and  app.session.get('logged') == 1 %}
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('compte.logout')  }}" >Se déconnecter </a>
+            </li>
+        {% else %}
+            <li class="nav-item"><a class="nav-link" href="{{ path('compte.login')  }}">Se connecter</a></li>
+        {% endif %}
+    </ul>
+</nav>
+

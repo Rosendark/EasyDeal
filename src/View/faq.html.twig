@@ -1,0 +1,31 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+    <fieldset class="cadrefaq">
+        <legend class="titrefaq">Nous répondons à vos réponses ! </legend>
+
+        <a href="javascript:Toggle(1)" class="qfaq">Comment se créer un compte ?</a><br />
+        <div id="ans1" class="rfaq" style="display:none;">
+            Il vous faudra clique ici ensuite faire sa sa sa....
+        </div>
+
+        <a href="javascript:Toggle(2)" class="qfaq">Comment se connecter ?</a><br />
+        <div id="ans2" class="rfaq" style="display: none;">
+            Il vous suffira de clique en haut à droite du site sur le lien se connecter et y rentrer ....
+        </div>
+
+        <a href="javascript:Toggle(3)" class="qfaq">En quoi consiste notre site ?</a><br />
+        <div id="ans3" class="rfaq" style="display: none;">
+            Site contre le gaspillage .... bla bla super le gaspillage
+        </div>
+
+        <a href="javascript:Toggle(4)" class="qfaq">Comment l'utilisé ?</a><br />
+        <div id="ans4" class="rfaq" style="display: none;">
+            Vous pourrez voir tous les produits réserver ect pour le client et le vendeur pourra blablabla
+        </div>
+
+        <a href="javascript:Toggle(5)" class="qfaq">Quelle partenariat possédons nous ?</a><br />
+        <div id="ans5" class="rfaq" style="display: none;">
+            Nous sommes en partenariat avec ..
+        </div><br>
+    </fieldset>
+{% endblock %}

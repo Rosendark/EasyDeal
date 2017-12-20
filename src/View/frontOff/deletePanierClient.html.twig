@@ -1,0 +1,24 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+        <form method="post" action="{{path('panier.validFormDeletePanier')}}">
+            <main role="main" class="container">
+        <fieldset>
+            <legend>Supprimer un produit</legend>
+            <input type="hidden" id="_method" name="_method" value="DELETE" />
+            <input name="id_panier"  type="hidden" value="{{ panier.id_panier }}"/>
+
+            <div class="form-group">
+            <p>etes vous sur de vouloir supprimer l'object qui a pour nom : {{ panier.libelle_produits   }}?</p>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 mb-3">
+                    <button class="btn btn-danger " type="submit">Supprimer</button>
+                </div>
+            </div>
+
+
+        </fieldset>
+            </main><!-- /.container -->
+</form>
+
+{% endblock %}

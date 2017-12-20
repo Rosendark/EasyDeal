@@ -1,0 +1,33 @@
+
+{% extends "layout.html.twig" %}
+{% block contenu %}
+    <form method="post" action="{{ path('compte.validFormlogin') }}">
+            <div class="form-group">
+                <div class="col-md-3 mb-4">
+                    <label >Login :</label>
+                    <input name="login"  type="text" value="" class="form-control"  placeholder="Login"  required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3 mb-4">
+                    <label>Password</label>
+                    <input name="password" type="text" class="form-control"  placeholder="Password" required>
+                </div>
+            </div>
+        {% if app.session.get('erreur') is not empty %}
+        <div class="form-group">
+            <div class="col-md-3 mb-4">
+                    <small>{{ app.session.get('erreur') }} </small>
+            </div>
+        </div>
+        {% endif %}
+        <div class="form-group">
+            <div class="col-md-3 mb-4">
+                <button name="seConnecter" class="btn btn-danger" type="submit">Se connecter</button>
+            </div>
+
+        </div>
+
+    </form>
+
+{% endblock %}

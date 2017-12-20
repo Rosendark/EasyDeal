@@ -1,0 +1,53 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+	<form form method="post" action="{{ path('reservation.validFormEditReservation') }}">
+
+		<fieldset>
+			<legend>Modifier une réservation </legend>
+			<div class="form-group">
+				<div class="col-md-6 mb-3">
+					Nom du compte :
+					<select name="id_compte" class="form-control">
+                        {% if  donnees.id_compte is not defined or donnees.id_compte is empty   %}
+							<option value="">Veuillez sélectionner un compte</option>
+                        {% endif %}
+                        {% for c in compte %}
+							<option value="{{ c.id_compte }}"
+                                    {% if donnees.id_compte is defined and c.id_compte == donnees.id_compte %}selected{% endif %}>
+                                {{ c.username }}
+							</option>
+                        {% endfor %}
+					</select>
+                    {% if erreurs.id_compte is defined %}
+						<small class="">{{erreurs.id_compte}}</small>
+                    {% endif %}
+				</div>
+			</div>
+
+			Heure de la vente :
+			<div class="form-group">
+				<div class="col-md-6 mb-3">
+					<input name="heure_fin_vente" type="datetime"  {% if erreurs.heure_fin_vente is defined %} class="form-control is-invalid" {% endif %}  {% if erreurs.heure_fin_vente is not defined %} class="form-control is-valid" {% endif %}
+						   id="heure_fin_vente" placeholder="heure_fin_vente" value="{{donnees.heure_fin_vente}}" required>
+                    {% if erreurs.heure_fin_vente is defined %}
+						<div class="invalid-feedback">
+                            {{erreurs.heure_fin_vente}}
+						</div>
+                    {% endif %}
+				</div>
+			</div>
+
+
+
+            <input type="hidden" id="_method" name="_method" value="put" />
+
+            <div class="form-group">
+				<div class="col-md-6 mb-3">
+
+					<button class="btn " type="submit">Modifier</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+{% endblock %}

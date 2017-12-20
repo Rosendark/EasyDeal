@@ -1,0 +1,31 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+    <div class="contact_css">
+    <h3>Contactez notre équipe</h3>
+    {#<form method="post" action="{{ #path('contact.validFormContact') }}">#}
+        <div class="form-group">
+            <div class="col-md-3 mb-4">
+                <p>Votre nom et prénom:<input type="text" name="nom" size="30" /></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3 mb-4">
+                <p>Votre email: <span style="color:#ff0000;">*</span>: <input type="text" name="email" size="30" /></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3 mb-4">
+                <p>Message <span style="color:#ff0000;">*</span>:</p>
+            </div>
+            <textarea name="message" cols="60" rows="10"></textarea>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3 mb-4">
+                <button name="seConnecter" class="btn btn-danger" type="submit">Envoyer !</button>
+            </div>
+
+        </div>
+
+    </form>
+    </div>
+{% endblock %}

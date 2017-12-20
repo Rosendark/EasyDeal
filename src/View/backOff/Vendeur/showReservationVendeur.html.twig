@@ -1,0 +1,28 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+	<div class="col-md-6 mb-2"></div>
+	<table class="table table-striped">
+		<thead class="thead-inverse">
+		<tr><th>Id reservation</th><th>Prix</th><th>Heure de fin de vente</th>
+            {% if   app.session.get('droits') is defined and  app.session.get('droits') == 'ROLE_VENDEUR' %}
+				<th>opération</th>
+            {% endif %}
+		</tr>
+		</thead>
+		<tbody>
+        {% for vendeur in vendeurs if vendeurs is not empty %}
+			<tr>
+					<td>{{vendeur.id_reservation}}</td><td>{{vendeur.prix_reservation}}</td><td>{{vendeur.heure_fin_vente}}</td>
+                {% if   app.session.get('droits') is defined and  app.session.get('droits') == 'ROLE_VENDEUR' %}
+					<td>
+
+						<a href="{{ path('vendeur.delete', {id: vendeur.id_reservation}) }}">supprimer</a>
+					</td>
+                {% endif %}
+			</tr>
+        {% endfor %}
+		</tbody>
+	</table>
+	</div>
+{% endblock %}
+

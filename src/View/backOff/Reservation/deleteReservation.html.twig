@@ -1,0 +1,31 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+<form method="post" action="{{ path('reservation.validFormDeleteReservation') }}">
+    <fieldset>
+        <input name="id_reservation"  type="hidden" value="{{donnees.id_reservation}}" />
+    <div class="form-group">
+    <div class="col-md-7 mb-3">
+        <legend>Confirmer la suppression de la réservation suivante :</legend>
+    </div>
+        <div class="col-md-3 mb-3">
+
+            <label>Reservation : <h5>{{donnees.id_reservation}}</h5> </label>
+            {% if erreurs.id_reservation is defined %}
+                <div class="invalid-feedback">
+
+                    {{erreurs.id_reservation}}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+		<input type="hidden" id="_method" name="_method" value="delete" />
+        <div class="form-group">
+            <div class="col-md-6 mb-3">
+                <button class="btn" type="submit">supprimer</button>
+            </div>
+        </div>
+
+	</fieldset>	
+
+</form>
+{% endblock %}

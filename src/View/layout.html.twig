@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr" xmlns:background="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exemple MVC php</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/starter-template.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script type="text/javascript">
+        function Show(id){
+            document.getElementById(id).style.display = "";
+        }
+        function Toggle(id){
+            var o = document.getElementById("ans"+id);
+            if(o.style.display == "") o.style.display = "none";
+            else o.style.display = "";
+        }
+    </script>
+</head>
+<body>
+
+{% if   app.session.get('droits') is defined and  app.session.get('droits') == 'ROLE_ADMIN' %}
+    {% include "nav_backOff.html.twig" %}
+{% elseif   app.session.get('droits') is defined and  app.session.get('droits') == 'ROLE_CLIENT' %}
+    {% include "nav_frontClientOff.html.twig" %}
+{% elseif  app.session.get('droits') is defined and  app.session.get('droits') == 'ROLE_VENDEUR'%}
+    {% include "nav_frontVendeurOff.html.twig" %}
+{% else %}
+    {% include "nav_home.html.twig" %}
+{% endif%}
+
+{% block contenu %}
+    <main role="main" class="container">
+
+        <div class="starter-template">
+            <h1> Site contre le gaspillage</h1>
+
+        </div>
+
+    </main>
+    <!-- /.container -->
+{% endblock %}
+
+{% block footer %}
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contenu_footer">
+                        Copyright ©   |     <a href="{{ path('faq.show') }}">FAQ</a>     |     <a href="{{ path('contact.show') }}">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+<!-- Bootstrap core JavaScript
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+</body>
+</html>
+

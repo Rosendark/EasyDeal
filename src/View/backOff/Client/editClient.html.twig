@@ -1,0 +1,91 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+	<form form method="post" action="{{ path('produit.validFormEditProduit') }}">
+
+		<fieldset>
+			<legend>Modifier un produit </legend>
+            <input name="id_produits"  type="hidden" value="{{donnees.id_produits}}" />
+			<div class="form-group">
+				<div class="col-md-3 mb-3">
+					<label for="validNom">Nom:</label>
+					<input  name="libelle_produits" type="text" {% if erreurs.libelle_produits is defined %} class="form-control is-invalid" {% endif %}  {% if erreurs.libelle_produits is not defined %} class="form-control is-valid" {% endif %}
+							id="validNom" placeholder="libelle_produits" value="{{donnees.libelle_produits}}" required>
+                    {% if erreurs.libelle_produits is defined %}
+						<div class="invalid-feedback">
+
+                            {{erreurs.libelle_produits}}
+						</div>
+                    {% endif %}
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-6 mb-3">
+					<select name="id_typeProduits" class="form-control">
+                        {% if  donnees.id_typeProduits is not defined or donnees.id_typeProduits is empty   %}
+							<option value="">Veuillez sélectionner un type de produit</option>
+                        {% endif %}
+                        {% for typeProduit in typeProduits %}
+							<option value="{{ typeProduit.id_typeProduits }}"
+                                    {% if donnees.id_typeProduits is defined and typeProduit.id_typeProduits == donnees.id_typeProduits %}selected{% endif %}>
+                                {{ typeProduit.libelle_typeProduits }}
+							</option>
+                        {% endfor %}
+					</select>
+                    {% if erreurs.id_typeProduits is defined %}
+						<small class="">{{erreurs.id_typeProduits}}</small>
+                    {% endif %}
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-md-6 mb-3">
+					<label for="validPrix">Prix :</label>
+					<input name="prix_produits" type="text"  {% if erreurs.prix_produits is defined %} class="form-control is-invalid" {% endif %}  {% if erreurs.prix_produits is not defined %} class="form-control is-valid" {% endif %}
+						   id="validPrix" placeholder="prix_produits" value="{{donnees.prix_produits}}" required>
+                    {% if erreurs.prix_produits is defined %}
+						<div class="invalid-feedback">
+                            {{erreurs.prix_produits}}
+						</div>
+                    {% endif %}
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-6 mb-3">
+					<label for="validQuantite">quantite :</label>
+					<input name="quantite_produits" type="text"  {% if erreurs.quantite_produits is defined %} class="form-control is-invalid" {% endif %}  {% if erreurs.quantite_produits is not defined %} class="form-control is-valid" {% endif %}
+						   id="validQuantite" placeholder="quantite_produits" value="{{donnees.quantite_produits}}" required>
+                    {% if erreurs.quantite_produits is defined %}
+						<div class="invalid-feedback">
+                            {{erreurs.quantite_produits}}
+						</div>
+                    {% endif %}
+				</div>
+			</div>
+            <div class="form-group">
+				<div class="col-md-6 mb-3">
+					<label for="heure_debut_vente">heure debut vente :</label>
+					<input name="heure_debut_vente" type="text"  id="validheuredebut" placeholder="heure_debut_vente" value="{{donnees.heure_debut_vente}}" required>
+				</div>
+			</div>
+
+
+            <div class="form-group">
+                <div class="col-md-6 mb-3">
+                    <label for="heure_fin_vente">heure fin vente :</label>
+                    <input name="heure_fin_vente" type="text" id="validheurefin" placeholder="heure_fin_vente" value="{{donnees.heure_fin_vente}}" required>
+                </div>
+            </div>
+
+
+            <input type="hidden" id="_method" name="_method" value="put" />
+
+            <div class="form-group">
+				<div class="col-md-6 mb-3">
+
+					<button class="btn " type="submit">Créer</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+{% endblock %}

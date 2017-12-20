@@ -1,0 +1,26 @@
+{% extends "layout.html.twig" %}
+
+
+{% block contenu %}
+
+    <div class="col-md-6 mb-2"></div>
+
+    {% for data in profil if data is not empty %}
+
+        <h4>Nom :</h4>
+            {{data.nom_utilisateur}}
+
+        <h4>Prenom :</h4>
+            {{ data.prenom_utilisateur }}
+
+        <h4>Numero de telephone :</h4>
+            {{ data.numero_tel }}
+
+
+    {% endfor %}
+        </thead>
+
+
+    </div>
+
+{% endblock %}

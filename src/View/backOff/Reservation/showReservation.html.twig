@@ -1,0 +1,29 @@
+{% extends "layout.html.twig" %}
+{% block contenu %}
+	<div class="col-md-6 mb-2"></div>
+	<table class="table table-striped">
+		<thead class="thead-inverse">
+		<th>id reservation</th><th>Id de compte</th><th>Prix total</th><th>heure fin</th>
+            {% if   app.session.get('droits') is defined and  app.session.get('droits') == 'ROLE_ADMIN' %}
+				<th>opération</th>
+            {% endif %}
+		</tr>
+		</thead>
+		<tbody>
+        {% for reservation in data if data is not empty %}
+
+			<tr>
+				<td>{{reservation.id_reservation}}</td><td>{{reservation.id_compte}}</td><td>{{reservation.prix_reservation}}</td><td>{{reservation.heure_fin_vente}}</td>
+                {% if   app.session.get('droits') is defined and  app.session.get('droits') == 'ROLE_ADMIN' %}
+					<td>
+						<a href="{{ path('reservation.editReservation', {id: reservation.id_reservation}) }}">modifier</a>
+						<a href="{{ path('reservation.deleteReservation', {id: reservation.id_reservation}) }}">supprimer</a>
+					</td>
+                {% endif %}
+			</tr>
+        {% endfor %}
+		</tbody>
+	</table>
+	</div>
+{% endblock %}
+
